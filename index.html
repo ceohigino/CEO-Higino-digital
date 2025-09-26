@@ -3,299 +3,170 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ebooks de Programação</title>
+  <title>Loja Digital - CEO Higino</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: white;
-      text-align: center;
+      margin: 0; padding: 0;
+      background: #f5f5f5;
+      color: #333;
     }
     header {
-      padding: 50px 20px;
-      background: rgba(0,0,0,0.7);
-    }
-    header img {
-      width: 100%;
-      max-height: 350px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
-    select, button {
-      padding: 12px 20px;
-      border-radius: 8px;
-      border: none;
-      margin: 10px;
-      font-size: 1em;
-    }
-    button {
-      background: #ff6f61;
+      background: linear-gradient(135deg, #0a3d62, #1e90ff);
       color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #ff3b2e;
-    }
-    section {
-      padding: 50px 20px;
-    }
-    form {
-      background: rgba(255,255,255,0.1);
       padding: 20px;
-      border-radius: 12px;
-      max-width: 400px;
+      text-align: center;
+    }
+    header h1 { margin: 0; }
+    main {
+      padding: 20px;
+      max-width: 900px;
       margin: auto;
     }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 8px;
-    }
-    input[type="submit"] {
-      background: #ff6f61;
-      color: white;
-      font-size: 1.1em;
-      cursor: pointer;
-    }
-    input[type="submit"]:hover {
-      background: #ff3b2e;
-    }
-    footer {
+    .banner {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       padding: 20px;
-      background: #111;
+      margin-bottom: 30px;
+      text-align: center;
     }
-    .whatsapp {
-      display: inline-flex;
-      align-items: center;
-      background: #25d366;
+    .banner img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    .preco { margin: 15px 0; }
+    .preco select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .btn-comprar {
+      display: inline-block;
+      padding: 12px 20px;
+      margin-top: 15px;
+      background: #1e90ff;
       color: white;
-      padding: 10px 20px;
-      border-radius: 50px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+      transition: 0.3s;
     }
-    .whatsapp img {
-      width: 24px;
+    .btn-comprar:hover { background: #0a3d62; }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-top: 40px;
+    }
+    form input, form textarea {
+      width: 100%; padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      padding: 12px 20px;
+      background: #1e90ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    form button:hover { background: #0a3d62; }
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      text-align: center;
+      background: #0a3d62;
+      color: white;
+    }
+    /* Botão WhatsApp fixo */
+    .whatsapp-fixo {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      border-radius: 50px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+    .whatsapp-fixo img {
+      width: 28px; height: 28px;
       margin-right: 10px;
+    }
+    .whatsapp-fixo:hover {
+      background: #128c7e;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
-
   <header>
-    <img src="capa.jpg" alt="Capa do site">
-    <h1>Ebooks de Programação</h1>
-    <p>Com o passado como inspiração, o presente como foco e o coração no futuro tecnológico.</p>
-
-    <!-- Escolha de preço -->
-    <div>
-      <label for="preco">Escolha o valor do seu ebook:</label><br>
-      <select id="preco">
-        <option value="">-- Selecione --</option>
-        <!-- Exemplo PayPal -->
-        <option value="https://www.paypal.com/ncp/payment/ABC12345XYZ">5 USD (PayPal)</option>
-        <option value="https://www.paypal.com/ncp/payment/DEF67890QWE">10 USD (PayPal)</option>
-        <option value="https://www.paypal.com/ncp/payment/GHI45678RTY">20 USD (PayPal)</option>
-        <!-- Exemplo Wise -->
-        <option value="https://wise.com/request/payment/WISE123XYZ">5 USD (Wise)</option>
-        <option value="https://wise.com/request/payment/WISE456QWE">10 USD (Wise)</option>
-      </select>
-      <br>
-      <button onclick="comprar()">Comprar Agora</button>
-    </div>
+    <h1>📚 Loja Digital - CEO Higino</h1>
+    <p>Ebooks inovadores para o futuro tecnológico</p>
   </header>
 
-  <section>
-    <h2>Entre em Contato</h2>
+  <main>
+    <!-- Banner do primeiro ebook -->
+    <section class="banner">
+      <h2>🚀 Do Passado ao Futuro Tecnológico</h2>
+      <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-zwGaMzub4tyNpQ6tbbnY9QpG/user-AkVTlo8xqUo7HdyXRwkm5HwR/img-ZolznTuM9wtJMiFjk10r3wnR.png?st=2025-09-26T15%3A45%3A18Z&se=2025-09-26T17%3A45%3A18Z&sp=r&sv=2025-02-24&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-25T21%3A56%3A51Z&ske=2025-09-26T21%3A56%3A51Z&sks=b&skv=2025-02-24&sig=sF1smJKxaMZpFUS%2BzP1u%2BqesJK5ffoCco43qRVCXdtg%3D" alt="Capa do Ebook">
+      <p>Descobre como as ideias do passado moldam o presente e constroem o futuro digital.</p>
+
+      <div class="preco">
+        <label for="preco">Escolha o valor:</label><br>
+        <select id="preco">
+          <option value="">-- Selecionar --</option>
+          <option value="https://www.paypal.com/ncp/payment/ABC12345XYZ">5 USD (PayPal)</option>
+          <option value="https://www.paypal.com/ncp/payment/DEF67890QWE">10 USD (PayPal)</option>
+          <option value="https://wise.com/request/payment/XYZ123ABC">20 USD (Wise)</option>
+        </select>
+      </div>
+
+      <a id="comprar" href="#" class="btn-comprar" target="_blank">Comprar Agora</a>
+    </section>
+
+    <!-- Formulário de contato -->
     <form action="https://formspree.io/f/xwprvkze" method="POST">
-      <input type="text" name="name" placeholder="Seu nome" required>
-      <input type="email" name="email" placeholder="Seu e-mail" required>
-      <textarea name="message" placeholder="Sua mensagem" rows="5" required></textarea>
-      <input type="submit" value="Enviar">
+      <h3>📩 Fale Conosco</h3>
+      <input type="text" name="name" placeholder="Seu Nome" required>
+      <input type="email" name="email" placeholder="Seu Email" required>
+      <textarea name="message" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+      <button type="submit">Enviar Mensagem</button>
     </form>
-  </section>
+  </main>
 
   <footer>
-    <a href="https://wa.me/934917014" target="_blank" class="whatsapp">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-      Fale Conosco
-    </a>
-    <p>&copy; 2025 Ebooks de Programação. Todos os direitos reservados.</p>
+    <p>© 2025 Loja Digital - CEO Higino | Todos os direitos reservados</p>
   </footer>
 
-  <script>
-    function comprar() {
-      const link = document.getElementById("preco").value;
-      if (link) {
-        window.open(link, "_blank");
-      } else {
-        alert("Por favor, selecione um valor.");
-      }
-    }
-  </script>
-
-</body>
-  </html><!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ebooks de Programação</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: white;
-      text-align: center;
-    }
-    header {
-      padding: 50px 20px;
-      background: rgba(0,0,0,0.7);
-    }
-    header img {
-      width: 100%;
-      max-height: 350px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
-    select, button {
-      padding: 12px 20px;
-      border-radius: 8px;
-      border: none;
-      margin: 10px;
-      font-size: 1em;
-    }
-    button {
-      background: #ff6f61;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #ff3b2e;
-    }
-    section {
-      padding: 50px 20px;
-    }
-    form {
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 400px;
-      margin: auto;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 8px;
-    }
-    input[type="submit"] {
-      background: #ff6f61;
-      color: white;
-      font-size: 1.1em;
-      cursor: pointer;
-    }
-    input[type="submit"]:hover {
-      background: #ff3b2e;
-    }
-    footer {
-      padding: 20px;
-      background: #111;
-    }
-    .whatsapp {
-      display: inline-flex;
-      align-items: center;
-      background: #25d366;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .whatsapp img {
-      width: 24px;
-      margin-right: 10px;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <img src="capa.jpg" alt="Capa do site">
-    <h1>Ebooks de Programação</h1>
-    <p>Com o passado como inspiração, o presente como foco e o coração no futuro tecnológico.</p>
-
-    <!-- Escolha de preço -->
-    <div>
-      <label for="preco">Escolha o valor do seu ebook:</label><br>
-      <select id="preco">
-        <option value="">-- Selecione --</option>
-        <!-- Exemplo PayPal -->
-        <option value="https://www.paypal.com/ncp/payment/ABC12345XYZ">5 USD (PayPal)</option>
-        <option value="https://www.paypal.com/ncp/payment/DEF67890QWE">10 USD (PayPal)</option>
-        <option value="https://www.paypal.com/ncp/payment/GHI45678RTY">20 USD (PayPal)</option>
-        <!-- Exemplo Wise -->
-        <option value="https://wise.com/request/payment/WISE123XYZ">5 USD (Wise)</option>
-        <option value="https://wise.com/request/payment/WISE456QWE">10 USD (Wise)</option>
-      </select>
-      <br>
-      <button onclick="comprar()">Comprar Agora</button>
-    </div>
-  </header>
-
-  <section>
-    <h2>Entre em Contato</h2>
-    <form action="https://formspree.io/f/xwprvkze" method="POST">
-      <input type="text" name="name" placeholder="Seu nome" required>
-      <input type="email" name="email" placeholder="Seu e-mail" required>
-      <textarea name="message" placeholder="Sua mensagem" rows="5" required></textarea>
-      <input type="submit" value="Enviar">
-    </form>
-  </section>
-
-  <footer>
-    <a href="https://wa.me/934917014" target="_blank" class="whatsapp">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-      Fale Conosco
-    </a>
-    <p>&copy; 2025 Ebooks de Programação. Todos os direitos reservados.</p>
-  </footer>
+  <!-- Botão WhatsApp fixo -->
+  <a href="https://wa.me/244934917014" class="whatsapp-fixo" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    Falar no WhatsApp
+  </a>
 
   <script>
-    function comprar() {
-      const link = document.getElementById("preco").value;
+    // Script para redirecionar para o link escolhido
+    document.getElementById('comprar').addEventListener('click', function(e) {
+      e.preventDefault();
+      const link = document.getElementById('preco').value;
       if (link) {
-        window.open(link, "_blank");
+        window.open(link, '_blank');
       } else {
-        alert("Por favor, selecione um valor.");
+        alert("Por favor, selecione um valor antes de comprar.");
       }
-    }
+    });
   </script>
-
 </body>
-    </html>
+  </html>
