@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEO Higino Digital</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background-color:#f9f9f9; color:#333; }
+    header {
+      background: linear-gradient(90deg, #1a73e8, #fbbc05);
+      color:white;
+      padding:80px 20px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    header h1 { font-size:3em; margin:0; animation: fadeIn 2s ease-in; }
+    header p { font-size:1.2em; margin:10px 0; animation: fadeIn 2s ease-in 0.5s; }
+    @keyframes fadeIn { 0% { opacity:0; transform: translateY(-20px);} 100% { opacity:1; transform: translateY(0);} }
+    section { padding:50px 20px; max-width:900px; margin:auto; }
+    h2 { color:#1a73e8; margin-bottom:15px; }
+    .button { display:inline-block; background:#1a73e8; color:white; padding:12px 25px; text-decoration:none; border-radius:5px; margin-top:10px; transition: all 0.3s; }
+    .button:hover { background:#0b52c1; transform: scale(1.05); }
+    footer { text-align:center; padding:20px; background:#eee; margin-top:40px; }
+    .banner-img { max-width:100%; height:auto; margin-top:20px; border-radius:10px; }
+    .icon { width:50px; margin:5px; vertical-align:middle; }
+    .product-section img { width:200px; border-radius:10px; margin-top:15px; }
+    input, textarea { width:100%; padding:10px; margin-top:5px; border:1px solid #ccc; border-radius:5px; }
+    button[type="submit"] { cursor:pointer; }
+    @media(max-width:600px){ header h1{font-size:2em;} header p{font-size:1em;} .product-section img{width:100%;} }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CEO Higino Digital</h1>
+    <p>Rendas Extras com Inteligência Artificial</p>
+    <p>Aprenda a criar produtos digitais e gerar renda online usando IA</p>
+    <img class="banner-img" src="https://i.imgur.com/8fK4h0Z.png" alt="Banner IA Digital">
+  </header>
+
+  <section>
+    <h2>Sobre Nós</h2>
+    <p>
+      CEO Higino Digital – Soluções em Ebooks e Produtos Digitais.<br>
+      Nosso foco é capacitar pessoas a gerar renda extra online através de inteligência artificial, automação e ferramentas digitais.
+    </p>
+    <p>Contato: ceohigino.digital@gmail.com</p>
+    <div>
+      <img class="icon" src="https://img.icons8.com/ios-filled/50/1a73e8/artificial-intelligence.png" alt="IA">
+      <img class="icon" src="https://img.icons8.com/ios-filled/50/1a73e8/ebook.png" alt="Ebook">
+      <img class="icon" src="https://img.icons8.com/ios-filled/50/1a73e8/automation.png" alt="Automação">
+    </div>
+  </section>
+
+  <section class="product-section">
+    <h2>Produtos</h2>
+    <p>📘 Ebook: Rendas Extras com IA</p>
+    <p>Aprenda a criar renda online usando ChatGPT, MidJourney e outras ferramentas digitais.</p>
+    <a href="[COLOQUE_LINK_DO_GUMROAD_OU_AMAZON]" class="button">Comprar Agora</a>
+    <img class="banner-img" src="https://i.imgur.com/ThhxyyP.png" alt="Capa Ebook">
+  </section>
+
+  <section>
+    <h2>Contato</h2>
+    <p>Para dúvidas, parcerias ou suporte:</p>
+    <p>📧 Email: ceohigino.digital@gmail.com</p>
+
+    <!-- Formulário funcional via Formspree -->
+    <form action="https://formspree.io/f/[SEU_ID_FORMSPREE]" method="POST">
+      <label for="nome">Nome:</label><br>
+      <input type="text" id="nome" name="nome" required><br><br>
+
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="mensagem">Mensagem:</label><br>
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea><br><br>
+
+      <button type="submit" class="button">Enviar</button>
+    </form>
+
+    <!-- Link direto para WhatsApp -->
+    <p style="margin-top:15px;">
+      📱 Ou fale direto no WhatsApp: 
+      <a href="https://wa.me/244923325753" target="_blank" class="button">Enviar Mensagem</a>
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 CEO Higino Digital | Todos os direitos reservados
+  </footer>
+
+</body>
+</html>
