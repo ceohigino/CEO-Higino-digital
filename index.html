@@ -3,89 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loja Digital de Ebooks</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Loja Virtual - Rendas Extras com IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body { margin: 0; font-family: Arial, sans-serif; background-color: #f4f4f4; }
-header { background-color: #1E88E5; color: #fff; padding: 20px; text-align: center; }
-header h1 { margin: 0; }
-.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
-.product { background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; transition: transform 0.2s; }
-.product:hover { transform: translateY(-5px); }
-.product img { max-width: 100%; border-radius: 10px; }
-.product h2 { font-size: 18px; margin: 10px 0 5px; }
-.product p { font-size: 14px; color: #555; }
-.product .price { font-weight: bold; margin: 10px 0; font-size: 16px; }
-.product button { background-color: #1E88E5; color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; transition: background 0.2s; margin: 3px; }
-.product button:hover { background-color: #1565C0; }
-.whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000; }
-.whatsapp i { color: white; font-size: 28px; }
-.contact-form { background: #fff; max-width: 500px; margin: 40px auto; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-.contact-form h2 { margin-top: 0; text-align: center; }
-.contact-form input, .contact-form textarea { width: 100%; padding: 10px; margin: 8px 0; border-radius: 5px; border: 1px solid #ccc; }
-.contact-form button { background-color: #1E88E5; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; }
-.contact-form button:hover { background-color: #1565C0; }
+* {margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif;}
+body {background:#f5f5f5; color:#333;}
+header {background:#1e1e1e; color:#fff; padding:20px; text-align:center;}
+header h1 {font-size:2em;}
+header p {font-size:1em;}
+.banner-container {display:flex; overflow-x:auto; gap:15px; padding:20px;}
+.banner {min-width:250px; flex-shrink:0; border-radius:10px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.2);}
+.banner img {width:100%; display:block;}
+.products {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:20px;}
+.product {background:#fff; padding:15px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; justify-content:space-between;}
+.product img {width:100%; border-radius:10px;}
+.product h2 {font-size:1.2em; margin:10px 0;}
+.product p {font-size:0.9em; margin-bottom:10px;}
+.buy-btn {background:#4CAF50; color:#fff; padding:10px; text-align:center; border:none; border-radius:5px; cursor:pointer; transition:0.3s;}
+.buy-btn:hover {background:#45a049;}
+.whatsapp {position:fixed; bottom:20px; right:20px; width:60px; height:60px; border-radius:50%; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.2);}
+.whatsapp img {width:100%; height:100%;}
+footer {text-align:center; padding:20px; background:#1e1e1e; color:#fff; margin-top:20px;}
+form {display:flex; flex-direction:column; gap:10px; max-width:400px; margin:auto; background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
+input, textarea {padding:10px; border:1px solid #ccc; border-radius:5px;}
+button {padding:10px; background:#1e90ff; color:#fff; border:none; border-radius:5px; cursor:pointer;}
+button:hover {background:#1c86ee;}
+
+/* Pagamento pop-up */
+#pagamentoModal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;}
+#pagamentoModal .modal-content {background:#fff; padding:30px; border-radius:10px; max-width:400px; width:90%; text-align:center;}
+#pagamentoModal .modal-content h2 {margin-bottom:20px;}
+#pagamentoModal .modal-content button {margin:10px 0; padding:12px; width:80%; font-size:1em; border:none; border-radius:5px; cursor:pointer;}
+.unitel {background:#4CAF50; color:#fff;}
+.afrimoney {background:#FF9800; color:#fff;}
+.paypay {background:#2196F3; color:#fff;}
+.express {background:#9C27B0; color:#fff;}
+#closeModal {background:#f44336; color:#fff;}
+#pagamentoModal .modal-content button:hover {opacity:0.8;}
 </style>
 </head>
 <body>
 
 <header>
-    <h1>Rendas Extras com Inteligência Artificial</h1>
-    <p>Aprenda a criar produtos digitais e gerar renda online usando IA</p>
+<h1>Rendas Extras com Inteligência Artificial</h1>
+<p>Aprenda a criar produtos digitais e gerar renda online usando IA</p>
 </header>
 
+<!-- Banners -->
+<section class="banner-container">
+<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+1" alt="Ebook 1"></div>
+<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+2" alt="Ebook 2"></div>
+<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+3" alt="Ebook 3"></div>
+<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+4" alt="Ebook 4"></div>
+<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+5" alt="Ebook 5"></div>
+</section>
+
+<!-- Produtos -->
 <section class="products">
-    <!-- Produto 1 -->
-    <div class="product">
-        <img src="images/ebook_php.jpg" alt="Ebook PHP">
-        <h2>Domine a Programação em PHP</h2>
-        <p>Ebook completo com códigos, exercícios e projetos práticos para iniciantes e avançados.</p>
-        <div class="price">USD 15</div>
-        <button onclick="window.open('https://unitelmoney.co.ao/pay?amount=15','_blank')">Unitel Money</button>
-        <button onclick="window.open('https://www.afrimoney.com/pay?amount=15','_blank')">AfriMoney</button>
-        <button onclick="window.open('https://www.paypay.com/pay?amount=15','_blank')">PayPay</button>
-        <button onclick="window.open('https://www.expresspay.com/pay?amount=15','_blank')">Express</button>
-    </div>
-
-    <!-- Produto 2 -->
-    <div class="product">
-        <img src="images/ebook_ia.jpg" alt="Ebook IA">
-        <h2>Inteligência Artificial para Iniciantes</h2>
-        <p>Aprenda a criar produtos digitais usando IA e gerar renda online rapidamente.</p>
-        <div class="price">USD 20</div>
-        <button onclick="window.open('https://unitelmoney.co.ao/pay?amount=20','_blank')">Unitel Money</button>
-        <button onclick="window.open('https://www.afrimoney.com/pay?amount=20','_blank')">AfriMoney</button>
-        <button onclick="window.open('https://www.paypay.com/pay?amount=20','_blank')">PayPay</button>
-        <button onclick="window.open('https://www.expresspay.com/pay?amount=20','_blank')">Express</button>
-    </div>
-
-    <!-- Produto 3 -->
-    <div class="product">
-        <img src="images/ebook_marketing.jpg" alt="Ebook Marketing">
-        <h2>Marketing Digital do Zero</h2>
-        <p>Aprenda estratégias de marketing digital para vender seus produtos e aumentar renda online.</p>
-        <div class="price">USD 18</div>
-        <button onclick="window.open('https://unitelmoney.co.ao/pay?amount=18','_blank')">Unitel Money</button>
-        <button onclick="window.open('https://www.afrimoney.com/pay?amount=18','_blank')">AfriMoney</button>
-        <button onclick="window.open('https://www.paypay.com/pay?amount=18','_blank')">PayPay</button>
-        <button onclick="window.open('https://www.expresspay.com/pay?amount=18','_blank')">Express</button>
-    </div>
-
+<div class="product">
+<img src="https://via.placeholder.com/250x250?text=Ebook+1" alt="Ebook 1">
+<h2>Ebook 1</h2>
+<p>Aprenda técnicas de IA para gerar renda online.</p>
+<button class="buy-btn" onclick="openPagamento('Ebook 1')">Comprar Agora</button>
+</div>
+<div class="product">
+<img src="https://via.placeholder.com/250x250?text=Ebook+2" alt="Ebook 2">
+<h2>Ebook 2</h2>
+<p>Criação de produtos digitais do zero usando IA.</p>
+<button class="buy-btn" onclick="openPagamento('Ebook 2')">Comprar Agora</button>
+</div>
+<div class="product">
+<img src="https://via.placeholder.com/250x250?text=Ebook+3" alt="Ebook 3">
+<h2>Ebook 3</h2>
+<p>Estratégias para vender ebooks rapidamente online.</p>
+<button class="buy-btn" onclick="openPagamento('Ebook 3')">Comprar Agora</button>
+</div>
 </section>
 
-<section class="contact-form">
-    <h2>Fale Conosco</h2>
-    <form action="https://formspree.io/f/xwprvkze" method="POST">
-        <input type="text" name="name" placeholder="Seu nome" required>
-        <input type="email" name="email" placeholder="Seu e-mail" required>
-        <textarea name="message" placeholder="Sua mensagem" rows="5" required></textarea>
-        <button type="submit">Enviar</button>
-    </form>
+<!-- Formulário de Contato -->
+<section style="padding:20px;">
+<h2 style="text-align:center;">Entre em Contato</h2>
+<form action="https://formspree.io/f/xwprvkze" method="POST">
+<input type="text" name="nome" placeholder="Seu Nome" required>
+<input type="email" name="email" placeholder="Seu Email" required>
+<textarea name="mensagem" placeholder="Sua Mensagem" rows="5" required></textarea>
+<button type="submit">Enviar Mensagem</button>
+</form>
 </section>
 
+<!-- Modal de Pagamento -->
+<div id="pagamentoModal">
+<div class="modal-content">
+<h2 id="produtoTitulo">Pagamento</h2>
+<button class="unitel" onclick="window.open('https://wa.me/934917014?text=Quero+pagar+via+Unitel+Money','_blank')">Unitel Money</button>
+<button class="afrimoney" onclick="window.open('https://wa.me/934917014?text=Quero+pagar+via+Afrimoney','_blank')">Afrimoney</button>
+<button class="paypay" onclick="window.open('https://wa.me/934917014?text=Quero+pagar+via+PayPay','_blank')">PayPay</button>
+<button class="express" onclick="window.open('https://wa.me/934917014?text=Quero+pagar+via+Express','_blank')">Express</button>
+<button id="closeModal">Cancelar</button>
+</div>
+</div>
+
+<!-- WhatsApp -->
 <a href="https://wa.me/934917014" target="_blank" class="whatsapp">
-    <i class="fab fa-whatsapp"></i>
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
 </a>
 
+<footer>
+<p>© 2025 Rendas Extras com IA - Todos os direitos reservados</p>
+</footer>
+
+<script>
+function openPagamento(produto){
+    document.getElementById('pagamentoModal').style.display='flex';
+    document.getElementById('produtoTitulo').innerText='Pagamento - '+produto;
+}
+document.getElementById('closeModal').onclick=function(){
+    document.getElementById('pagamentoModal').style.display='none';
+}
+window.onclick=function(event){
+    if(event.target==document.getElementById('pagamentoModal')){
+        document.getElementById('pagamentoModal').style.display='none';
+    }
+}
+</script>
+
 </body>
-          </html>
+    </html>
