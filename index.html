@@ -3,31 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEO Higino - Ebook Exclusivo</title>
+<title>CEO Higino Store - Loja Virtual</title>
 <link rel="icon" href="assets/images/favicon.png">
 <style>
-body {margin:0;font-family:'Arial',sans-serif;background:#f4f4f9;color:#333;overflow-x:hidden;}
-header {background:linear-gradient(135deg,#0d6efd,#6610f2);color:white;padding:60px 20px;text-align:center;position:relative;z-index:2;}
-header h1{margin:0;font-size:2.8em;animation:slideIn 1s ease-out;}
-header p{font-size:1.3em;margin-top:10px;animation:fadeIn 2s ease-out;}
-@keyframes slideIn {from {transform:translateY(-50px); opacity:0;} to {transform:translateY(0); opacity:1;}}
-@keyframes fadeIn {from {opacity:0;} to {opacity:1;}}
-.main-banner{position:relative;margin:30px auto;max-width:800px;border-radius:15px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.3);animation:fadeIn 1.5s ease-out;}
-.main-banner img{width:100%;display:block;filter:brightness(0.7);transition:transform 0.5s ease;}
-.main-banner img:hover{transform:scale(1.05);}
-.particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
-.uvp-overlay{position:absolute;bottom:0;width:100%;background:rgba(255,255,255,0.95);padding:20px;box-sizing:border-box;text-align:center;z-index:2;}
-.uvp-overlay h2{margin:0 0 10px;color:#6610f2;font-size:1.6em;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
-.uvp-overlay p{margin:0;font-size:1.2em;font-weight:bold;}
-.countdown{font-size:1.3em;color:#e74c3c;font-weight:bold;margin:10px 0 0 0;}
-.buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin:30px 0;}
-.buttons a{text-decoration:none;padding:15px 30px;border-radius:10px;font-size:1.2em;font-weight:bold;color:white;transition:0.3s;animation:fadeIn 2s ease-out;}
-.buttons a.afrimoney{background:#ff6600;}
-.buttons a.unitel{background:#f1c40f;color:#222;}
-.buttons a.paypay{background:#0d6efd;}
-.buttons a.express{background:#28a745;}
-.buttons a:hover{transform:scale(1.1);box-shadow:0 6px 15px rgba(0,0,0,0.3);}
-.whatsapp-fixo{position:fixed;bottom:20px;right:20px;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.3);transition:0.3s;z-index:100;}
-.whatsapp-fixo img{width:35px;height:35px;border-radius:50%;}
-.whatsapp-fixo:hover{
+/* Reset básico */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family: 'Arial', sans-serif; background:#f4f4f9; color:#333;}
+a {text-decoration:none;}
+header {background: linear-gradient(135deg,#0d6efd,#6610f2); color:white; padding:60px 20px; text-align:center;}
+header h1{font-size:2.8em; margin-bottom:10px;}
+header p{font-size:1.3em;}
+nav{display:flex; justify-content:center; gap:20px; margin:20px 0;}
+nav a{color:#6610f2; font-weight:bold; transition:0.3s;}
+nav a:hover{color:#0d6efd;}
+.main-banner{position:relative; max-width:1000px; margin:0 auto; border-radius:15px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.3);}
+.main-banner img{width:100%; filter:brightness(0.7);}
+.uvp-overlay{position:absolute;bottom:0;width:100%;background:rgba(255,255,255,0.9); padding:20px; text-align:center;}
+.uvp-overlay h2{color:#6610f2; margin-bottom:10px;}
+.products{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:40px 20px;}
+.product-card{background:white; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.2); overflow:hidden; transition:0.3s;}
+.product-card:hover{transform:scale(1.02);}
+.product-card img{width:100%; height:200px; object-fit:cover;}
+.product-info{padding:15px;}
+.product-info h3{color:#6610f2; margin-bottom:10px;}
+.product-info p{margin-bottom:15px; font-weight:bold;}
+.product-buttons{display:flex; gap:10px; flex-wrap:wrap;}
+.product-buttons a{flex:1; text-align:center; padding:10px; border-radius:8px; color:white; font-weight:bold; transition:0.3s;}
+.afrimoney{background:#ff6600;}
+.unitel{background:#f1c40f; color:#222;}
+.paypay{background:#0d6efd;}
+.express{background:#28a745;}
+.product-buttons a:hover{transform:scale(1.05); box-shadow:0 4px 12px rgba(0,0,0,0.3);}
+.whatsapp-fixo{position:fixed; bottom:20px; right:20px; width:60px; height:60px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition:0.3s; z-index:100;}
+.whatsapp-fixo img{width:35px; height:35px; border-radius:50%;}
+.whatsapp-fixo:hover{transform:scale(1.1);}
+form{max-width:500px; margin:50px auto; background:white; padding:25px; border-radius:15px; box-shadow:0 6px 20px rgba(0,0,0,0.2);}
+form h2{color:#6610f2; margin-bottom:15px;}
+form input, form textarea{width:100%; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc;}
+form button{background:#6610f2; color:white; padding:12px 25px; border:none; border-radius:8px; font-size:1.1em; cursor:pointer; transition:0.3s;}
+form button:hover{background:#520dc2; transform:scale(1.05);}
+footer{text-align:center; padding:25px; background:#222; color:white; margin-top:40px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CEO Higino Store</h1>
+  <p>Loja virtual de ebooks e produtos digitais</p>
+</header>
+
+<nav>
+  <a href="#products">Produtos</a>
+  <a href="#contact">Contato</a>
+</nav>
+
+<section class="main-banner">
+  <img src="assets/images/banner.jpg" alt="Banner Loja">
+  <div class="uvp-overlay">
+    <h2>🚀 Promoção Exclusiva</h2>
+    <p>Aprenda e cresça com ebooks que unem passado, presente e futuro tecnológico!</p>
+  </div>
+</section>
+
+<section id="products" class="products">
+  <!-- Produto 1 -->
+  <div class="product-card">
+    <img src="assets/images/ebook1.jpg" alt="Ebook 1">
+    <div class="product-info">
+      <h3>Ebook Inteligência Digital</h3>
+      <p>Preço: 5.000 KZ</p>
+      <div class="product-buttons">
+        <a href="https://afrimoney.com/pagamento/exemplo" class="afrimoney" target="_blank">Afrimoney</a>
+        <a href="https://unitelmoney.ao/pagamento/exemplo" class="unitel" target="_blank">Unitel Money</a>
+        <a href="https://paypay.com/pagamento/exemplo" class="paypay" target="_blank">PayPay</a>
+        <a href="https://express.ao/pagamento/exemplo" class="express" target="_blank">Express</a>
+      </div>
+    </div>
+  </div>
+  <!-- Produto 2 -->
+  <div class="product-card">
+    <img src="assets/images/ebook2.jpg" alt="Ebook 2">
+    <div class="product-info">
+      <h3>Ebook Futuro Tecnológico</h3>
+      <p>Preço: 5.000 KZ</p>
+      <div class="product-buttons">
+        <a href="https://afrimoney.com/pagamento/exemplo" class="afrimoney" target="_blank">Afrimoney</a>
+        <a href="https://unitelmoney.ao/pagamento/exemplo" class="unitel" target="_blank">Unitel Money</a>
+        <a href="https://paypay.com/pagamento/exemplo" class="paypay" target="_blank">PayPay</a>
+        <a href="https://express.ao/pagamento/exemplo" class="express" target="_blank">Express</a>
+      </div>
+    </div>
+  </div>
+  <!-- Produto 3 -->
+  <div class="product-card">
+    <img src="assets/images/ebook3.jpg" alt="Ebook 3">
+    <div class="product-info">
+      <h3>Ebook Estratégias Digitais</h3>
+      <p>Preço: 5.000 KZ</p>
+      <div class="product-buttons">
+        <a href="https://afrimoney.com/pagamento/exemplo" class="afrimoney" target="_blank">Afrimoney</a>
+        <a href="https://unitelmoney.ao/pagamento/exemplo" class="unitel" target="_blank">Unitel Money</a>
+        <a href="https://paypay.com/pagamento/exemplo" class="paypay" target="_blank">PayPay</a>
+        <a href="https://express.ao/pagamento/exemplo" class="express" target="_blank">Express</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/244934917014" class="whatsapp-fixo" target="_blank">
+  <img src="assets/images/whatsapp.png" alt="WhatsApp">
+</a>
+
+<section id="contact">
+<form action="https://formspree.io/f/xwprvkze" method="POST">
+  <h2>📩 Fale Connosco</h2>
+  <input type="text" name="name" placeholder="Seu nome" required>
+  <input type="email" name="email" placeholder="Seu e-mail" required>
+  <textarea name="message" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+  <button type="submit">Enviar Mensagem</button>
+</form>
+</section>
+
+<footer>
+  <p>© 2025 CEO Higino - Todos os direitos reservados.</p>
+</footer>
+
+</body>
+  </html>
