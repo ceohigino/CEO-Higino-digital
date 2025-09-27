@@ -10,21 +10,28 @@ body {
   font-family: 'Arial', sans-serif;
   background:#f4f4f9;
   color:#333;
+  overflow-x:hidden;
 }
 header {
   background: linear-gradient(135deg,#0d6efd,#6610f2);
   color:white;
   padding:60px 20px;
   text-align:center;
+  position:relative;
+  z-index:2;
 }
 header h1 {
   margin:0;
   font-size:2.8em;
+  animation: slideIn 1s ease-out;
 }
 header p {
   font-size:1.3em;
   margin-top:10px;
+  animation: fadeIn 2s ease-out;
 }
+@keyframes slideIn {from {transform:translateY(-50px); opacity:0;} to {transform:translateY(0); opacity:1;}}
+@keyframes fadeIn {from {opacity:0;} to {opacity:1;}}
 .main-banner {
   position:relative;
   margin:30px auto;
@@ -32,11 +39,20 @@ header p {
   border-radius:15px;
   overflow:hidden;
   box-shadow:0 6px 20px rgba(0,0,0,0.3);
+  animation: fadeIn 1.5s ease-out;
 }
 .main-banner img {
   width:100%;
   display:block;
-  filter: brightness(0.8);
+  filter: brightness(0.7);
+  transition: transform 0.5s ease;
+}
+.main-banner img:hover {transform: scale(1.05);}
+.particles {
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
+  pointer-events:none;
+  z-index:1;
 }
 .uvp-overlay {
   position:absolute;
@@ -46,17 +62,13 @@ header p {
   padding:20px;
   box-sizing:border-box;
   text-align:center;
+  z-index:2;
 }
-.uvp-overlay h2 {
-  margin:0 0 10px;
-  color:#6610f2;
-  font-size:1.6em;
-}
-.uvp-overlay p {
-  margin:0;
-  font-size:1.2em;
-  font-weight:bold;
-}
+.uvp-overlay h2 {margin:0 0 10px; color:#6610f2; font-size:1.6em; animation: pulse 2s infinite;}
+@keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+.uvp-overlay p {margin:0; font-size:1.2em; font-weight:bold;}
+.countdown {font-size:1.3em; color:#e74c3c; font-weight:bold; margin:10px 0 0 0;}
+
 .buttons {
   display:flex;
   justify-content:center;
@@ -72,12 +84,14 @@ header p {
   font-weight:bold;
   color:white;
   transition:0.3s;
+  animation: fadeIn 2s ease-out;
 }
 .buttons a.afrimoney {background:#ff6600;}
 .buttons a.unitel {background:#f1c40f; color:#222;}
 .buttons a.paypay {background:#0d6efd;}
 .buttons a.express {background:#28a745;}
-.buttons a:hover {transform:scale(1.05);}
+.buttons a:hover {transform:scale(1.1); box-shadow:0 6px 15px rgba(0,0,0,0.3);}
+
 .whatsapp-fixo {
   position:fixed;
   bottom:20px;
@@ -94,12 +108,9 @@ header p {
   transition:0.3s;
   z-index:100;
 }
-.whatsapp-fixo img {
-  width:30px;
-  height:30px;
-  margin-right:10px;
-}
+.whatsapp-fixo img {width:30px;height:30px;margin-right:10px;}
 .whatsapp-fixo:hover {background:#1da851; transform:scale(1.05);}
+
 form {
   max-width:500px;
   margin:50px auto;
@@ -107,15 +118,10 @@ form {
   padding:25px;
   border-radius:15px;
   box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  animation: fadeIn 2s ease-out;
 }
 form h2 {margin-top:0; color:#6610f2;}
-form input, form textarea {
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:8px;
-  border:1px solid #ccc;
-}
+form input, form textarea {width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid #ccc;}
 form button {
   background:#6610f2;
   color:white;
@@ -126,14 +132,11 @@ form button {
   cursor:pointer;
   transition:0.3s;
 }
-form button:hover {background:#520dc2;}
-footer {
-  text-align:center;
-  padding:25px;
-  background:#222;
-  color:white;
-  margin-top:40px;
-}
+form button:hover {background:#520dc2; transform:scale(1.05);}
+
+footer {text-align:center; padding:25px; background:#222; color:white; margin-top:40px;}
+
+canvas {position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;}
 </style>
 </head>
 <body>
@@ -144,12 +147,81 @@ footer {
 </header>
 
 <section class="main-banner">
+  <canvas id="particles"></canvas>
   <img src="https://via.placeholder.com/800x400?text=Ebook+Inovador" alt="Banner do Ebook">
   <div class="uvp-overlay">
     <h2>🚀 Ebook Exclusivo - 5.000 KZ</h2>
     <p>Aprenda estratégias que unem sabedoria do passado, foco no presente e visão do futuro. Oferta limitada!</p>
+    <div class="countdown" id="countdown">⏳ Promoção termina em: 24:00:00</div>
   </div>
 </section>
 
 <div class="buttons">
-  <a href="https://af
+  <a href="https://afrimoney.com/pagamento/exemplo" class="afrimoney" target="_blank">📱 Afrimoney</a>
+  <a href="https://unitelmoney.ao/pagamento/exemplo" class="unitel" target="_blank">📱 Unitel Money</a>
+  <a href="https://paypay.com/pagamento/exemplo" class="paypay" target="_blank">💳 PayPay</a>
+  <a href="https://express.ao/pagamento/exemplo" class="express" target="_blank">⚡ Express</a>
+</div>
+
+<a href="https://wa.me/244934917014" class="whatsapp-fixo" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> Fale comigo no WhatsApp
+</a>
+
+<form action="https://formspree.io/f/xwprvkze" method="POST">
+  <h2>📩 Fale Connosco</h2>
+  <input type="text" name="name" placeholder="Seu nome" required>
+  <input type="email" name="email" placeholder="Seu e-mail" required>
+  <textarea name="message" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+  <button type="submit">Enviar Mensagem</button>
+</form>
+
+<footer>
+  <p>© 2025 CEO Higino - Todos os direitos reservados.</p>
+</footer>
+
+<script>
+// Contagem regressiva 24h
+let countDownTime = new Date().getTime() + 24*60*60*1000;
+let countdown = document.getElementById("countdown");
+setInterval(function(){
+  let now = new Date().getTime();
+  let distance = countDownTime - now;
+  let hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  let minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  let seconds = Math.floor((distance % (1000*60)) / 1000);
+  countdown.innerHTML = `⏳ Promoção termina em: ${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+},1000);
+
+// Partículas animadas
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+let particlesArray = [];
+
+class Particle {
+  constructor(){
+    this.x = Math.random()*canvas.width;
+    this.y = Math.random()*canvas.height;
+    this.size = Math.random()*3 + 1;
+    this.speedX = Math.random()*1 - 0.5;
+    this.speedY = Math.random()*1 - 0.5;
+  }
+  update(){this.x += this.speedX; this.y += this.speedY; if(this.x>canvas.width)this.x=0; if(this.x<0)this.x=canvas.width; if(this.y>canvas.height)this.y=0; if(this.y<0)this.y=canvas.height;}
+  draw(){ctx.fillStyle='rgba(255,255,255,0.7)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill();}
+}
+
+function init(){
+  particlesArray = [];
+  for(let i=0;i<100;i++){particlesArray.push(new Particle());}
+}
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particlesArray.forEach(p=>{p.update();p.draw();});
+  requestAnimationFrame(animate);
+}
+init(); animate();
+</script>
+
+</body>
+  </html>
