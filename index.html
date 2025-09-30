@@ -4,110 +4,110 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CEO Higino Store — Loja Virtual</title>
-  <meta name="description" content="Loja virtual de ebooks e produtos digitais - CEO Higino Store" />
+  <meta name="description" content="Loja virtual completa — CEO Higino Store. Carrinho, WhatsApp, Formspree, notificações e animações." />
   <style>
     :root{
-      --bg:#f5f7fb; --accent:#4b2bd5; --accent-2:#2f45ff; --card:#ffffff;
-      --muted:#6b7280; --price:#0b5; --glass: rgba(255,255,255,0.6);
-      --gold:#ffbe2e;
-      font-synthesis: none;
+      --accent1:#4b2bd5; --accent2:#2f45ff; --muted:#6b7280; --card:#fff;
+      --success:#22c55e; --danger:#ef4444;
     }
     *{box-sizing:border-box}
     body{
-      margin:0; font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,#f8fafc 0%, #f3f6fb 100%);
-      color:#0f172a; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+      -webkit-font-smoothing:antialiased; background: linear-gradient(180deg,#f8fafc 0%, #f3f6fb 100%);
+      color:#0f172a;
     }
 
     /* Header */
     header{
-      background: linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:white; padding:48px 20px 36px; text-align:center;
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:white; padding:44px 20px 28px; text-align:center;
       box-shadow:0 6px 30px rgba(45,35,90,0.12);
     }
-    .brand{font-size:42px; font-weight:700; letter-spacing:0.3px;}
-    .tag{margin-top:8px; opacity:0.95}
-
-    /* Nav */
-    nav{display:flex; justify-content:center; gap:24px; margin-top:18px;}
-    nav a{color:rgba(255,255,255,0.92); text-decoration:none; font-weight:600; padding:8px 14px; border-radius:8px}
+    .brand{font-size:40px; font-weight:800; letter-spacing:0.3px}
+    .tag{opacity:0.92; margin-top:8px}
+    nav{display:flex; justify-content:center; gap:20px; margin-top:14px}
+    nav a{color:rgba(255,255,255,0.96); text-decoration:none; font-weight:700; position:relative; padding:8px 12px; border-radius:8px}
     nav a:hover{background:rgba(255,255,255,0.06)}
 
-    /* Promo banner */
-    .promo{
-      max-width:1100px; margin:-20px auto 32px; background:linear-gradient(90deg,#3c2bd6,#5d3bff);
-      color:white; border-radius:14px; padding:28px; display:flex; gap:20px; align-items:center;
-      box-shadow:0 10px 30px rgba(39,24,110,0.18);
+    /* Badge */
+    .cart-badge{
+      background:var(--danger); color:#fff; font-size:12px; font-weight:800;
+      border-radius:999px; padding:2px 7px; position:absolute; top:-8px; right:-14px; transition:transform .18s ease;
     }
-    .promo h2{margin:0; font-size:34px; display:flex; gap:10px; align-items:center}
+    .pulse{animation:pulse .38s ease}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
+
+    /* Promo */
+    .promo{max-width:1180px; margin:-22px auto 28px; background:linear-gradient(90deg,#3c2bd6,#5d3bff);
+           color:white; border-radius:14px; padding:26px; display:flex; gap:18px; align-items:center; justify-content:space-between;
+           box-shadow:0 10px 30px rgba(39,24,110,0.16)}
+    .promo h2{margin:0; font-size:28px}
     .promo p{margin:6px 0 0; opacity:0.95}
 
-    /* Grid */
-    .container{max-width:1100px; margin:0 auto; padding:26px 18px 80px; display:grid; grid-template-columns: 1fr 320px; gap:28px;}
-    .catalog{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-
+    /* Layout */
+    .container{max-width:1180px; margin:0 auto; padding:22px; display:grid; grid-template-columns: 1fr 360px; gap:26px}
+    .catalog{display:grid; grid-template-columns: repeat(3,1fr); gap:18px}
     .card{
-      background:var(--card); border-radius:12px; padding:14px; box-shadow:0 8px 18px rgba(15,23,42,0.06);
-      display:flex; flex-direction:column; gap:12px; align-items:stretch; overflow:hidden;
+      background:var(--card); border-radius:12px; padding:14px; box-shadow:0 8px 20px rgba(15,23,42,0.05);
+      display:flex; flex-direction:column; gap:12px; overflow:hidden;
     }
-    .cover{
-      height:150px; border-radius:8px; display:flex; align-items:center; justify-content:center;
-      background:linear-gradient(180deg,#0f172a11,#0f172a08); color:var(--accent-2); font-weight:700;
-      box-shadow: inset 0 -8px 24px rgba(15,23,42,0.02);
-    }
-    .title{font-weight:700; font-size:16px; margin:0}
+    .cover{height:140px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#0f172a08,#0f172a06)}
+    .title{font-weight:800; font-size:16px; margin:0}
     .meta{color:var(--muted); font-size:13px}
     .price{font-weight:800; color:#0b4; font-size:15px}
-    .btns{display:flex; gap:8px; flex-wrap:wrap}
-    .pay{
-      padding:8px 10px; border-radius:8px; border:0; cursor:pointer; font-weight:700; font-size:13px;
-      box-shadow:0 6px 12px rgba(15,23,42,0.06);
-    }
-    .pay.yellow{background:var(--gold); color:#0b1220}
-    .pay.blue{background:#0f7fff; color:white}
-    .pay.green{background:#10b981;color:white}
-    .pay.gray{background:#f3f4f6;color:#0f172a}
 
-    /* Contact panel */
+    .btns{display:flex; gap:8px; margin-top:6px}
+    .btn{padding:10px 12px; border-radius:10px; border:0; cursor:pointer; font-weight:800}
+    .btn.wh{background:linear-gradient(90deg,#25D366,#1DA851); color:white}
+    .btn.primary{background:var(--accent2); color:white}
+    .btn.ghost{background:#f3f4f6; color:#0f172a; font-weight:700}
+
+    /* Sidebar / contact */
     aside.card.contact{
-      position:sticky; top:24px; align-self:start;
+      background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
+      padding:18px; border-radius:12px; position:sticky; top:24px; box-shadow:0 8px 24px rgba(15,23,42,0.05);
       display:flex; flex-direction:column; gap:12px;
     }
-    aside h3{display:flex; gap:10px; align-items:center; margin:0}
+    aside h3{margin:0; font-size:18px}
     .whatsapp{
       display:flex; gap:10px; align-items:center; background:linear-gradient(90deg,#25D366,#1DA851); color:white; padding:10px 12px; border-radius:10px;
-      text-decoration:none; font-weight:700;
+      text-decoration:none; font-weight:800;
     }
-    form{display:flex; flex-direction:column; gap:10px}
-    input, textarea{padding:10px; border-radius:8px; border:1px solid #e6e9ef; font-size:14px; outline:none}
-    textarea{min-height:110px; resize:vertical}
-    .submit{padding:12px; border-radius:10px; background:var(--accent-2); color:white; border:0; font-weight:700; cursor:pointer}
 
-    footer{max-width:1100px; margin:40px auto 80px; text-align:center; color:var(--muted)}
+    form{display:flex; flex-direction:column; gap:8px}
+    input, textarea, select{padding:10px; border-radius:8px; border:1px solid #e6e9ef; font-size:14px}
+    textarea{min-height:100px; resize:vertical}
+    .submit{padding:12px; border-radius:10px; background:var(--accent2); color:white; border:0; font-weight:800; cursor:pointer}
 
+    footer{max-width:1180px; margin:36px auto 64px; text-align:center; color:var(--muted)}
+
+    /* Notifications & confetti */
+    .notify{position:fixed; bottom:20px; right:20px; background:var(--success); color:#fff; padding:12px 18px; border-radius:10px; display:none; z-index:9999; font-weight:800; box-shadow:0 10px 30px rgba(0,0,0,0.15)}
+    .notify.danger{background:var(--danger)}
+    .confetti{position:fixed; width:10px; height:10px; top:-10px; z-index:9999; opacity:0.95; animation:fall linear forwards}
+    @keyframes fall{to{transform:translateY(110vh) rotate(720deg); opacity:0}}
     /* Responsive */
-    @media (max-width:1100px){ .container{grid-template-columns:1fr} .catalog{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width:700px){ .catalog{grid-template-columns:1fr} header{padding:28px 14px} .brand{font-size:30px} .promo{flex-direction:column; text-align:center}}
+    @media (max-width:1100px){ .container{grid-template-columns:1fr} .catalog{grid-template-columns:repeat(2,1fr)} .promo{flex-direction:column; text-align:center} }
+    @media (max-width:700px){ .catalog{grid-template-columns:1fr} header{padding:28px 14px} .brand{font-size:28px} }
   </style>
 </head>
 <body>
-
   <header>
     <div class="brand">CEO Higino Store</div>
-    <div class="tag">Loja virtual de ebooks e produtos digitais</div>
+    <div class="tag">Loja virtual de ebooks e produtos digitais — clássico & futuro</div>
     <nav aria-label="principal">
       <a href="#produtos">Produtos</a>
       <a href="#contato">Contato</a>
+      <a href="#carrinho" style="position:relative">Carrinho <span id="cartBadge" class="cart-badge" style="display:none">0</span></a>
     </nav>
   </header>
 
   <section class="promo" role="region" aria-label="promoção">
     <div style="flex:1">
-      <h2>🚀 Promoção Exclusiva</h2>
-      <p>Aprenda e cresça com ebooks que unem passado, presente e futuro tecnológico.</p>
+      <h2>🚀 Promoção Exclusiva — Aprenda e Lucre</h2>
+      <p>Guias práticos, playbooks e estratégias — feitos para quem valoriza a tradição e quer dominar o futuro.</p>
     </div>
-    <div style="width:160px; text-align:center;">
-      <!-- Bulb illustration -->
+    <div style="width:150px; text-align:center;">
       <svg width="100%" height="100" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="64" height="64" rx="12" fill="rgba(255,255,255,0.06)"/>
         <path d="M32 12c-6.627 0-12 5.373-12 12 0 3.87 1.755 7.348 4.667 9.757.55.438.833 1.083.747 1.76-.344 3.133-2 4.723-3.717 6.28C19 44 19 48 19 48h30s0-4-1.697-5.443c-1.717-1.557-3.373-3.147-3.717-6.28-.086-.677.197-1.322.747-1.76C42.245 31.348 44 27.87 44 24c0-6.627-5.373-12-12-12z" fill="url(#g)"/>
@@ -116,138 +116,110 @@
     </div>
   </section>
 
-  <main class="container" id="produtos">
+  <main class="container" id="produtos" aria-live="polite">
     <section>
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px">
         <h2 style="margin:0">Produtos em destaque</h2>
-        <div style="color:var(--muted); font-weight:600">Preços em KZ</div>
+        <div style="color:var(--muted); font-weight:700">Preços em KZ</div>
       </div>
 
-      <div class="catalog">
-        <!-- Card template, repeat for each ebook -->
-        <article class="card" aria-labelledby="p1">
+      <div class="catalog" role="list">
+        <!-- Product cards -->
+        <article class="card" role="listitem" aria-labelledby="p1">
           <div class="cover" role="img" aria-label="Capa: Ebook Inteligencia Digital">
-            <!-- simple illustration -->
-            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="6" width="88" height="88" rx="8" fill="#0f172a10"/>
-              <g transform="translate(10,10)">
-                <circle cx="36" cy="24" r="18" fill="#0f72ff11" stroke="#0f72ff" stroke-width="2"/>
-                <path d="M20 54h32" stroke="#0f72ff" stroke-width="3" stroke-linecap="round"/>
-              </g>
+            <svg width="70%" height="70%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6" width="88" height="88" rx="8" fill="#0f172a08"/>
+              <g transform="translate(10,10)"><circle cx="36" cy="24" r="18" fill="#0f72ff11" stroke="#0f72ff" stroke-width="2"/><path d="M20 54h32" stroke="#0f72ff" stroke-width="3" stroke-linecap="round"/></g>
             </svg>
           </div>
           <div>
-            <h3 id="p1" class="title">Ebook Inteligencia Digital</h3>
-            <div class="meta">Aprenda conceitos e aplicação prática</div>
+            <h3 id="p1" class="title">Ebook Inteligência Digital</h3>
+            <div class="meta">Conceitos e aplicação prática — 68 páginas.</div>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div class="price">Preço: 5.000 KZ</div>
+            <div class="price">5.000 KZ</div>
             <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
           </div>
           <div class="btns">
-            <button class="pay yellow" onclick="openWhatsapp('Ebook Inteligencia Digital')">Pedir via WhatsApp</button>
-            <button class="pay blue" onclick="addToCart('Ebook Inteligencia Digital')">Adicionar ao carrinho</button>
-            <button class="pay green" onclick="buyNow('Ebook Inteligencia Digital')">Comprar</button>
+            <button class="btn wh" title="Pedir via WhatsApp" onclick="openWhatsapp('Ebook Inteligência Digital')">Pedir WhatsApp</button>
+            <button class="btn primary" onclick="addToCart('Ebook Inteligência Digital',5000)">Adicionar ao carrinho</button>
+            <button class="btn ghost" onclick="buyNow('Ebook Inteligência Digital')">Comprar</button>
           </div>
         </article>
 
-        <article class="card" aria-labelledby="p2">
+        <article class="card" role="listitem" aria-labelledby="p2">
           <div class="cover" aria-hidden="true">
-            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="6" width="88" height="88" rx="8" fill="#012a8f10"/>
-              <g transform="translate(14,12)">
-                <path d="M36 16c6 0 12 4 12 10s-6 10-12 10-12-4-12-10 6-10 12-10z" fill="#6ea8ff11" stroke="#2f45ff" stroke-width="2"/>
-                <rect x="22" y="52" width="30" height="6" rx="2" fill="#2f45ff"/>
-              </g>
-            </svg>
+            <svg width="70%" height="70%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="88" height="88" rx="8" fill="#012a8f10"/><g transform="translate(14,12)"><path d="M36 16c6 0 12 4 12 10s-6 10-12 10-12-4-12-10 6-10 12-10z" fill="#6ea8ff11" stroke="#2f45ff" stroke-width="2"/><rect x="22" y="52" width="30" height="6" rx="2" fill="#2f45ff"/></g></svg>
           </div>
           <div>
             <h3 id="p2" class="title">Ebook Futuro Tecnológico</h3>
-            <div class="meta">Tendências e estratégias digitais</div>
+            <div class="meta">Tendências e estratégia digital — 72 páginas.</div>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div class="price">Preço: 5.000 KZ</div>
+            <div class="price">5.000 KZ</div>
             <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
           </div>
           <div class="btns">
-            <button class="pay yellow" onclick="openWhatsapp('Ebook Futuro Tecnológico')">Pedir via WhatsApp</button>
-            <button class="pay blue" onclick="addToCart('Ebook Futuro Tecnológico')">Adicionar ao carrinho</button>
-            <button class="pay green" onclick="buyNow('Ebook Futuro Tecnológico')">Comprar</button>
+            <button class="btn wh" onclick="openWhatsapp('Ebook Futuro Tecnológico')">Pedir WhatsApp</button>
+            <button class="btn primary" onclick="addToCart('Ebook Futuro Tecnológico',5000)">Adicionar ao carrinho</button>
+            <button class="btn ghost" onclick="buyNow('Ebook Futuro Tecnológico')">Comprar</button>
           </div>
         </article>
 
-        <article class="card" aria-labelledby="p3">
+        <article class="card" role="listitem" aria-labelledby="p3">
           <div class="cover" aria-hidden="true">
-            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="6" width="88" height="88" rx="8" fill="#0b4f0810"/>
-              <g transform="translate(12,12)">
-                <rect x="8" y="12" width="52" height="36" rx="4" fill="#0b8f5f11" stroke="#10b981" stroke-width="2"/>
-                <path d="M12 62h48" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
-              </g>
-            </svg>
+            <svg width="70%" height="70%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="88" height="88" rx="8" fill="#0b4f0810"/><g transform="translate(12,12)"><rect x="8" y="12" width="52" height="36" rx="4" fill="#0b8f5f11" stroke="#10b981" stroke-width="2"/><path d="M12 62h48" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/></g></svg>
           </div>
           <div>
             <h3 id="p3" class="title">Ebook Estratégias Digitais</h3>
-            <div class="meta">Ferramentas e playbooks de performance</div>
+            <div class="meta">Playbooks e ferramentas — 80 páginas.</div>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div class="price">Preço: 5.000 KZ</div>
+            <div class="price">5.000 KZ</div>
             <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
           </div>
           <div class="btns">
-            <button class="pay yellow" onclick="openWhatsapp('Ebook Estratégias Digitais')">Pedir via WhatsApp</button>
-            <button class="pay blue" onclick="addToCart('Ebook Estratégias Digitais')">Adicionar ao carrinho</button>
-            <button class="pay green" onclick="buyNow('Ebook Estratégias Digitais')">Comprar</button>
+            <button class="btn wh" onclick="openWhatsapp('Ebook Estratégias Digitais')">Pedir WhatsApp</button>
+            <button class="btn primary" onclick="addToCart('Ebook Estratégias Digitais',5000)">Adicionar ao carrinho</button>
+            <button class="btn ghost" onclick="buyNow('Ebook Estratégias Digitais')">Comprar</button>
           </div>
         </article>
 
-        <article class="card" aria-labelledby="p4">
+        <article class="card" role="listitem" aria-labelledby="p4">
           <div class="cover" aria-hidden="true">
-            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="6" width="88" height="88" rx="8" fill="#ffefc911"/>
-              <g transform="translate(12,12)">
-                <rect x="6" y="14" width="48" height="36" rx="6" fill="#ffd77a"/>
-                <path d="M18 60h28" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
-              </g>
-            </svg>
+            <svg width="70%" height="70%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="88" height="88" rx="8" fill="#ffefc911"/><g transform="translate(12,12)"><rect x="6" y="14" width="48" height="36" rx="6" fill="#ffd77a"/><path d="M18 60h28" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/></g></svg>
           </div>
           <div>
             <h3 id="p4" class="title">Ebook Monetização Online</h3>
-            <div class="meta">Como transformar audiência em receita</div>
+            <div class="meta">Transforma audiência em receita — 64 páginas.</div>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div class="price">Preço: 5.000 KZ</div>
+            <div class="price">5.000 KZ</div>
             <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
           </div>
           <div class="btns">
-            <button class="pay yellow" onclick="openWhatsapp('Ebook Monetização Online')">Pedir via WhatsApp</button>
-            <button class="pay blue" onclick="addToCart('Ebook Monetização Online')">Adicionar ao carrinho</button>
-            <button class="pay green" onclick="buyNow('Ebook Monetização Online')">Comprar</button>
+            <button class="btn wh" onclick="openWhatsapp('Ebook Monetização Online')">Pedir WhatsApp</button>
+            <button class="btn primary" onclick="addToCart('Ebook Monetização Online',5000)">Adicionar ao carrinho</button>
+            <button class="btn ghost" onclick="buyNow('Ebook Monetização Online')">Comprar</button>
           </div>
         </article>
 
-        <article class="card" aria-labelledby="p5">
+        <article class="card" role="listitem" aria-labelledby="p5">
           <div class="cover" aria-hidden="true">
-            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="6" width="88" height="88" rx="8" fill="#ffdede11"/>
-              <g transform="translate(12,12)">
-                <path d="M40 18v20" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round"/>
-                <path d="M22 48h36" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
-              </g>
-            </svg>
+            <svg width="70%" height="70%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="88" height="88" rx="8" fill="#ffdede11"/><g transform="translate(12,12)"><path d="M40 18v20" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round"/><path d="M22 48h36" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/></g></svg>
           </div>
           <div>
             <h3 id="p5" class="title">Ebook Empreendedorismo</h3>
-            <div class="meta">Princípios clássicos aplicados ao amanhã</div>
+            <div class="meta">Princípios clássicos aplicados ao amanhã — 88 páginas.</div>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div class="price">Preço: 5.000 KZ</div>
+            <div class="price">5.000 KZ</div>
             <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
           </div>
           <div class="btns">
-            <button class="pay yellow" onclick="openWhatsapp('Ebook Empreendedorismo')">Pedir via WhatsApp</button>
-            <button class="pay blue" onclick="addToCart('Ebook Empreendedorismo')">Adicionar ao carrinho</button>
-            <button class="pay green" onclick="buyNow('Ebook Empreendedorismo')">Comprar</button>
+            <button class="btn wh" onclick="openWhatsapp('Ebook Empreendedorismo')">Pedir WhatsApp</button>
+            <button class="btn primary" onclick="addToCart('Ebook Empreendedorismo',5000)">Adicionar ao carrinho</button>
+            <button class="btn ghost" onclick="buyNow('Ebook Empreendedorismo')">Comprar</button>
           </div>
         </article>
       </div>
@@ -256,19 +228,15 @@
     <aside class="card contact" id="contato" aria-labelledby="contactTitle">
       <h3 id="contactTitle">📬 Fale Connosco</h3>
 
-      <!-- Whatsapp quick link -->
-      <a class="whatsapp" href="https://wa.me/934917014?text=Ol%C3%A1%20CEO%20Higino%20Store%2C%20quero%20informacoes" target="_blank" rel="noopener noreferrer">
-        <!-- Icon -->
-        <svg width="18" height="18" viewBox="0 0 24 24" style="flex:0 0 18px" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <path d="M20.52 3.48A11.94 11.94 0 1 0 12 24v-2.4a9.6 9.6 0 1 1 9.6-9.6c0 1.7-.44 3.3-1.2 4.7l1.2 3.9-3.9-1.2a11.94 11.94 0 0 0 4.8-16.1z" fill="#fff"/>
-        </svg>
+      <!-- WhatsApp quick link -->
+      <a class="whatsapp" href="https://wa.me/934917014?text=Ol%C3%A1%20CEO%20Higino%20Store%2C%20quero%20informacoes" target="_blank" rel="noopener noreferrer" aria-label="Contactar via WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex:0 0 18px" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.94 11.94 0 1 0 12 24v-2.4a9.6 9.6 0 1 1 9.6-9.6c0 1.7-.44 3.3-1.2 4.7l1.2 3.9-3.9-1.2a11.94 11.94 0 0 0 4.8-16.1z" fill="#fff"/></svg>
         WhatsApp: +934 917 014
       </a>
 
       <!-- Contact form (Formspree) -->
       <form action="https://formspree.io/f/xzzjrwnq" method="POST" novalidate>
-        <!-- You can change the hidden subject or add fields as you like -->
-        <input type="hidden" name="_subject" value="Nova mensagem da loja CEO Higino">
+        <input type="hidden" name="_subject" value="Nova mensagem - CEO Higino Store">
         <label style="font-size:13px; color:var(--muted)">Nome</label>
         <input name="name" type="text" placeholder="Seu nome" required>
         <label style="font-size:13px; color:var(--muted)">Email</label>
@@ -278,7 +246,7 @@
         <button class="submit" type="submit">Enviar Mensagem</button>
       </form>
 
-      <div style="font-size:13px; color:var(--muted); margin-top:8px">Resposta automática por Formspree.</div>
+      <div style="font-size:13px; color:var(--muted); margin-top:6px">Formulário processado por Formspree.</div>
     </aside>
   </main>
 
@@ -286,46 +254,172 @@
     © <strong>CEO Higino Store</strong> — Todos os direitos reservados · Design inspirado no clássico e no futuro.
   </footer>
 
+  <!-- Notification -->
+  <div id="notify" class="notify" role="status" aria-live="polite">✅ Produto adicionado ao carrinho!</div>
+
   <script>
-    // Small UX helpers
+    /* === Estado do carrinho (persistente) === */
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cartList = document.getElementById("cartList");
+    const cartTotal = document.getElementById("cartTotal");
+    const cartBadge = document.getElementById("cartBadge");
+    const notify = document.getElementById("notify");
+
+    // Renders cart in the sidebar
+    function renderCart(){
+      const list = document.getElementById("cartList");
+      if(!list) return;
+      list.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, i) => {
+        total += item.price;
+        const li = document.createElement("li");
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+        li.style.padding = "6px 0";
+        li.innerHTML = `<span style="max-width:72%">${escapeHtml(item.name)}</span>
+                        <span style="color:var(--muted)">${item.price} KZ <button aria-label="Remover ${escapeHtml(item.name)}" style="margin-left:8px;border:0;background:transparent;cursor:pointer" onclick="removeItem(${i})">❌</button></span>`;
+        list.appendChild(li);
+      });
+      cartTotal.textContent = "Total: " + total + " KZ";
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateBadge();
+    }
+
+    // badge update with pulse animation
+    function updateBadge(){
+      if(!cartBadge) return;
+      if(cart.length > 0){
+        cartBadge.style.display = "inline-block";
+        cartBadge.textContent = cart.length;
+        cartBadge.classList.remove("pulse");
+        void cartBadge.offsetWidth; // restart animation
+        cartBadge.classList.add("pulse");
+      } else {
+        cartBadge.style.display = "none";
+      }
+    }
+
+    // Small notification + sound
+    function showNotify(msg, type = "success") {
+      if(!notify) return;
+      notify.textContent = msg;
+      notify.className = "notify";
+      if(type === "danger") notify.classList.add("danger");
+      notify.style.display = "block";
+      playBeep(type === "success" ? 640 : 220);
+      setTimeout(()=> { notify.style.display = "none"; }, 2000);
+    }
+
+    // Audio beep generated on-the-fly (no files)
+    function playBeep(freq) {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(freq, ctx.currentTime);
+        g.gain.setValueAtTime(0.09, ctx.currentTime);
+        o.connect(g); g.connect(ctx.destination);
+        o.start();
+        o.stop(ctx.currentTime + 0.12);
+      } catch(e) {
+        // Audio may be blocked by browser autoplay policies on first run.
+        console.debug("Audio não disponível:", e);
+      }
+    }
+
+    // Confetti generator
+    function launchConfetti(count = 28) {
+      for(let i=0;i<count;i++){
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = (Math.random()*100) + "vw";
+        c.style.background = randomColor();
+        c.style.width = (6 + Math.random()*8) + "px";
+        c.style.height = c.style.width;
+        c.style.animationDuration = (1.6 + Math.random()*2.2) + "s";
+        c.style.transform = "rotate(" + (Math.random()*360) + "deg)";
+        document.body.appendChild(c);
+        setTimeout(()=> { c.remove(); }, 4200);
+      }
+    }
+    function randomColor(){
+      const colors = ["#e11d48","#f97316","#facc15","#22c55e","#3b82f6","#a855f7","#ec4899"];
+      return colors[Math.floor(Math.random()*colors.length)];
+    }
+
+    // Helpers to open WhatsApp with prefilled text (uses the provided exact number)
     function openWhatsapp(product){
       const text = encodeURIComponent('Olá! Quero informações sobre: ' + product);
-      // Uses the provided number exactly
-      window.open('https://wa.me/934917014?text=' + text, '_blank');
-    }
-    function addToCart(product){
-      // placeholder small toast
-      showToast(product + ' adicionado ao carrinho (demo).');
+      window.open('https://wa.me/934917014?text=' + text, '_blank', 'noopener');
     }
     function buyNow(product){
-      // quick flow: open whatsapp to request purchase
       const text = encodeURIComponent('Quero comprar: ' + product + ' — preço 5.000 KZ');
-      window.open('https://wa.me/934917014?text=' + text, '_blank');
+      window.open('https://wa.me/934917014?text=' + text, '_blank', 'noopener');
     }
 
-    // small toast utility
-    function showToast(msg){
-      const t = document.createElement('div');
-      t.textContent = msg;
-      Object.assign(t.style, {
-        position:'fixed', bottom:'24px', left:'50%', transform:'translateX(-50%)',
-        background:'#0f172a', color:'white', padding:'10px 16px', borderRadius:'10px',
-        boxShadow:'0 8px 20px rgba(15,23,42,0.2)', zIndex:9999, opacity:0
-      });
-      document.body.appendChild(t);
-      requestAnimationFrame(()=> t.style.opacity = 1);
-      setTimeout(()=> { t.style.opacity = 0; setTimeout(()=> t.remove(),400) }, 2400);
+    // Add to cart
+    function addToCart(name, price){
+      cart.push({name, price});
+      renderCart();
+      showNotify("✅ " + name + " adicionado ao carrinho!", "success");
+      launchConfetti(18); // confetti ao adicionar
     }
 
-    // Enhance form UX: handle submission feedback
-    (function(){
-      const form = document.querySelector('form[action="https://formspree.io/f/xzzjrwnq"]');
-      if(!form) return;
-      form.addEventListener('submit', function(e){
-        // allow native submission to Formspree; show toast
-        showToast('A enviar mensagem…');
+    // Remove item
+    function removeItem(i){
+      const removed = cart[i] ? cart[i].name : "Produto";
+      cart.splice(i,1);
+      renderCart();
+      showNotify("❌ " + removed + " removido do carrinho!", "danger");
+    }
+
+    // Checkout: open WhatsApp with list, play confetti and clear cart (but keep persisted copy until user returns)
+    function checkout(){
+      if(cart.length === 0){ alert("Carrinho vazio! Adiciona produtos antes de finalizar."); return; }
+      let msg = "Olá, quero finalizar a compra dos seguintes ebooks:%0A";
+      let total = 0;
+      cart.forEach(item => {
+        msg += `- ${item.name} (${item.price} KZ)%0A`;
+        total += item.price;
       });
+      msg += `Total: ${total} KZ`;
+      // celebration
+      playBeep(880);
+      launchConfetti(40);
+      // open whatsapp
+      window.open("https://wa.me/934917014?text=" + msg, "_blank", "noopener");
+      // Optionally clear cart locally after sending (keeps user experience clean)
+      // We'll clear after a short delay so user sees confetti
+      setTimeout(()=> {
+        cart = [];
+        renderCart();
+        showNotify("🎉 Pedido iniciado no WhatsApp!", "success");
+      }, 800);
+    }
+
+    // Escape helper to avoid HTML injection in dynamic places
+    function escapeHtml(unsafe){
+      return String(unsafe).replace(/[&<>"'`=\/]/g, function(s) {
+        return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;",'/':'&#x2F;','=':'&#x3D;','`':'&#x60;'})[s];
+      });
+    }
+
+    // Initialize cart UI on load
+    (function init(){
+      // create placeholder elements for cart if missing (ensures compatibility)
+      if(!document.getElementById('cartList')){
+        const aside = document.querySelector('aside.card.contact');
+        const ul = document.createElement('ul');
+        ul.id = 'cartList';
+        ul.className = 'cart-list';
+        aside.insertAdjacentElement('beforebegin', ul);
+      }
+      renderCart();
     })();
+
   </script>
 </body>
-</html>
+  </html>
