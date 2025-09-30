@@ -1,131 +1,331 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-PT">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loja Virtual - Rendas Extras com IA</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<style>
-* {margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif;}
-body {background:#f5f5f5; color:#333;}
-header {background:#1e1e1e; color:#fff; padding:20px; text-align:center;}
-header h1 {font-size:2em;}
-header p {font-size:1em;}
-.banner-container {display:flex; overflow-x:auto; gap:15px; padding:20px;}
-.banner {min-width:250px; flex-shrink:0; border-radius:10px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.2);}
-.banner img {width:100%; display:block;}
-.products {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:20px;}
-.product {background:#fff; padding:15px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; justify-content:space-between;}
-.product img {width:100%; border-radius:10px;}
-.product h2 {font-size:1.2em; margin:10px 0;}
-.product p {font-size:0.9em; margin-bottom:10px;}
-.buy-btn {background:#4CAF50; color:#fff; padding:10px; text-align:center; border:none; border-radius:5px; cursor:pointer; transition:0.3s;}
-.buy-btn:hover {background:#45a049;}
-.whatsapp {position:fixed; bottom:20px; right:20px; width:60px; height:60px; border-radius:50%; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.2);}
-.whatsapp img {width:100%; height:100%;}
-footer {text-align:center; padding:20px; background:#1e1e1e; color:#fff; margin-top:20px;}
-form {display:flex; flex-direction:column; gap:10px; max-width:400px; margin:auto; background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
-input, textarea {padding:10px; border:1px solid #ccc; border-radius:5px;}
-button {padding:10px; background:#1e90ff; color:#fff; border:none; border-radius:5px; cursor:pointer;}
-button:hover {background:#1c86ee;}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CEO Higino Store — Loja Virtual</title>
+  <meta name="description" content="Loja virtual de ebooks e produtos digitais - CEO Higino Store" />
+  <style>
+    :root{
+      --bg:#f5f7fb; --accent:#4b2bd5; --accent-2:#2f45ff; --card:#ffffff;
+      --muted:#6b7280; --price:#0b5; --glass: rgba(255,255,255,0.6);
+      --gold:#ffbe2e;
+      font-synthesis: none;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#f8fafc 0%, #f3f6fb 100%);
+      color:#0f172a; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
 
-/* Pagamento pop-up */
-#pagamentoModal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;}
-#pagamentoModal .modal-content {background:#fff; padding:30px; border-radius:10px; max-width:400px; width:90%; text-align:center;}
-#pagamentoModal .modal-content h2 {margin-bottom:20px;}
-#pagamentoModal .modal-content button {margin:10px 0; padding:12px; width:80%; font-size:1em; border:none; border-radius:5px; cursor:pointer;}
-.unitel {background:#4CAF50; color:#fff;}
-.afrimoney {background:#FF9800; color:#fff;}
-.paypay {background:#2196F3; color:#fff;}
-.express {background:#9C27B0; color:#fff;}
-#closeModal {background:#f44336; color:#fff;}
-#pagamentoModal .modal-content button:hover {opacity:0.8;}
-</style>
+    /* Header */
+    header{
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white; padding:48px 20px 36px; text-align:center;
+      box-shadow:0 6px 30px rgba(45,35,90,0.12);
+    }
+    .brand{font-size:42px; font-weight:700; letter-spacing:0.3px;}
+    .tag{margin-top:8px; opacity:0.95}
+
+    /* Nav */
+    nav{display:flex; justify-content:center; gap:24px; margin-top:18px;}
+    nav a{color:rgba(255,255,255,0.92); text-decoration:none; font-weight:600; padding:8px 14px; border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.06)}
+
+    /* Promo banner */
+    .promo{
+      max-width:1100px; margin:-20px auto 32px; background:linear-gradient(90deg,#3c2bd6,#5d3bff);
+      color:white; border-radius:14px; padding:28px; display:flex; gap:20px; align-items:center;
+      box-shadow:0 10px 30px rgba(39,24,110,0.18);
+    }
+    .promo h2{margin:0; font-size:34px; display:flex; gap:10px; align-items:center}
+    .promo p{margin:6px 0 0; opacity:0.95}
+
+    /* Grid */
+    .container{max-width:1100px; margin:0 auto; padding:26px 18px 80px; display:grid; grid-template-columns: 1fr 320px; gap:28px;}
+    .catalog{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+
+    .card{
+      background:var(--card); border-radius:12px; padding:14px; box-shadow:0 8px 18px rgba(15,23,42,0.06);
+      display:flex; flex-direction:column; gap:12px; align-items:stretch; overflow:hidden;
+    }
+    .cover{
+      height:150px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(180deg,#0f172a11,#0f172a08); color:var(--accent-2); font-weight:700;
+      box-shadow: inset 0 -8px 24px rgba(15,23,42,0.02);
+    }
+    .title{font-weight:700; font-size:16px; margin:0}
+    .meta{color:var(--muted); font-size:13px}
+    .price{font-weight:800; color:#0b4; font-size:15px}
+    .btns{display:flex; gap:8px; flex-wrap:wrap}
+    .pay{
+      padding:8px 10px; border-radius:8px; border:0; cursor:pointer; font-weight:700; font-size:13px;
+      box-shadow:0 6px 12px rgba(15,23,42,0.06);
+    }
+    .pay.yellow{background:var(--gold); color:#0b1220}
+    .pay.blue{background:#0f7fff; color:white}
+    .pay.green{background:#10b981;color:white}
+    .pay.gray{background:#f3f4f6;color:#0f172a}
+
+    /* Contact panel */
+    aside.card.contact{
+      position:sticky; top:24px; align-self:start;
+      display:flex; flex-direction:column; gap:12px;
+    }
+    aside h3{display:flex; gap:10px; align-items:center; margin:0}
+    .whatsapp{
+      display:flex; gap:10px; align-items:center; background:linear-gradient(90deg,#25D366,#1DA851); color:white; padding:10px 12px; border-radius:10px;
+      text-decoration:none; font-weight:700;
+    }
+    form{display:flex; flex-direction:column; gap:10px}
+    input, textarea{padding:10px; border-radius:8px; border:1px solid #e6e9ef; font-size:14px; outline:none}
+    textarea{min-height:110px; resize:vertical}
+    .submit{padding:12px; border-radius:10px; background:var(--accent-2); color:white; border:0; font-weight:700; cursor:pointer}
+
+    footer{max-width:1100px; margin:40px auto 80px; text-align:center; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:1100px){ .container{grid-template-columns:1fr} .catalog{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:700px){ .catalog{grid-template-columns:1fr} header{padding:28px 14px} .brand{font-size:30px} .promo{flex-direction:column; text-align:center}}
+  </style>
 </head>
 <body>
 
-<header>
-<h1>Rendas Extras com Inteligência Artificial</h1>
-<p>Aprenda a criar produtos digitais e gerar renda online usando IA</p>
-</header>
+  <header>
+    <div class="brand">CEO Higino Store</div>
+    <div class="tag">Loja virtual de ebooks e produtos digitais</div>
+    <nav aria-label="principal">
+      <a href="#produtos">Produtos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
 
-<!-- Banners -->
-<section class="banner-container">
-<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+1" alt="Ebook 1"></div>
-<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+2" alt="Ebook 2"></div>
-<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+3" alt="Ebook 3"></div>
-<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+4" alt="Ebook 4"></div>
-<div class="banner"><img src="https://via.placeholder.com/250x150?text=Ebook+5" alt="Ebook 5"></div>
-</section>
+  <section class="promo" role="region" aria-label="promoção">
+    <div style="flex:1">
+      <h2>🚀 Promoção Exclusiva</h2>
+      <p>Aprenda e cresça com ebooks que unem passado, presente e futuro tecnológico.</p>
+    </div>
+    <div style="width:160px; text-align:center;">
+      <!-- Bulb illustration -->
+      <svg width="100%" height="100" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="64" height="64" rx="12" fill="rgba(255,255,255,0.06)"/>
+        <path d="M32 12c-6.627 0-12 5.373-12 12 0 3.87 1.755 7.348 4.667 9.757.55.438.833 1.083.747 1.76-.344 3.133-2 4.723-3.717 6.28C19 44 19 48 19 48h30s0-4-1.697-5.443c-1.717-1.557-3.373-3.147-3.717-6.28-.086-.677.197-1.322.747-1.76C42.245 31.348 44 27.87 44 24c0-6.627-5.373-12-12-12z" fill="url(#g)"/>
+        <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#fff59d"/><stop offset="1" stop-color="#ffd54a"/></linearGradient></defs>
+      </svg>
+    </div>
+  </section>
 
-<!-- Produtos -->
-<section class="products">
-<div class="product">
-<img src="https://via.placeholder.com/250x250?text=Ebook+1" alt="Ebook 1">
-<h2>Ebook 1</h2>
-<p>Aprenda técnicas de IA para gerar renda online.</p>
-<button class="buy-btn" onclick="openPagamento('Ebook 1')">Comprar Agora</button>
-</div>
-<div class="product">
-<img src="https://via.placeholder.com/250x250?text=Ebook+2" alt="Ebook 2">
-<h2>Ebook 2</h2>
-<p>Criação de produtos digitais do zero usando IA.</p>
-<button class="buy-btn" onclick="openPagamento('Ebook 2')">Comprar Agora</button>
-</div>
-<div class="product">
-<img src="https://via.placeholder.com/250x250?text=Ebook+3" alt="Ebook 3">
-<h2>Ebook 3</h2>
-<p>Estratégias para vender ebooks rapidamente online.</p>
-<button class="buy-btn" onclick="openPagamento('Ebook 3')">Comprar Agora</button>
-</div>
-</section>
+  <main class="container" id="produtos">
+    <section>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px">
+        <h2 style="margin:0">Produtos em destaque</h2>
+        <div style="color:var(--muted); font-weight:600">Preços em KZ</div>
+      </div>
 
-<!-- Formulário de Contato -->
-<section style="padding:20px;">
-<h2 style="text-align:center;">Entre em Contato</h2>
-<form action="https://formspree.io/f/xwprvkze" method="POST">
-<input type="text" name="nome" placeholder="Seu Nome" required>
-<input type="email" name="email" placeholder="Seu Email" required>
-<textarea name="mensagem" placeholder="Sua Mensagem" rows="5" required></textarea>
-<button type="submit">Enviar Mensagem</button>
-</form>
-</section>
+      <div class="catalog">
+        <!-- Card template, repeat for each ebook -->
+        <article class="card" aria-labelledby="p1">
+          <div class="cover" role="img" aria-label="Capa: Ebook Inteligencia Digital">
+            <!-- simple illustration -->
+            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6" width="88" height="88" rx="8" fill="#0f172a10"/>
+              <g transform="translate(10,10)">
+                <circle cx="36" cy="24" r="18" fill="#0f72ff11" stroke="#0f72ff" stroke-width="2"/>
+                <path d="M20 54h32" stroke="#0f72ff" stroke-width="3" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <h3 id="p1" class="title">Ebook Inteligencia Digital</h3>
+            <div class="meta">Aprenda conceitos e aplicação prática</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="price">Preço: 5.000 KZ</div>
+            <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
+          </div>
+          <div class="btns">
+            <button class="pay yellow" onclick="openWhatsapp('Ebook Inteligencia Digital')">Pedir via WhatsApp</button>
+            <button class="pay blue" onclick="addToCart('Ebook Inteligencia Digital')">Adicionar ao carrinho</button>
+            <button class="pay green" onclick="buyNow('Ebook Inteligencia Digital')">Comprar</button>
+          </div>
+        </article>
 
-<!-- Modal de Pagamento -->
-<div id="pagamentoModal">
-<div class="modal-content">
-<h2 id="produtoTitulo">Pagamento</h2>
-<button class="unitel" onclick="window.open('https://wa.me/934917014?text=Quero+pagar+via+Unitel+Money','_blank')">Unitel Money</button>
-<button class="afrimoney" onclick="window.open('https://wa.me/934917014?text=Quero+pagar+via+Afrimoney','_blank')">Afrimoney</button>
-<button class="paypay" onclick="window.open('https://wa.me/934917014?text=Quero+pagar+via+PayPay','_blank')">PayPay</button>
-<button class="express" onclick="window.open('https://wa.me/934917014?text=Quero+pagar+via+Express','_blank')">Express</button>
-<button id="closeModal">Cancelar</button>
-</div>
-</div>
+        <article class="card" aria-labelledby="p2">
+          <div class="cover" aria-hidden="true">
+            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6" width="88" height="88" rx="8" fill="#012a8f10"/>
+              <g transform="translate(14,12)">
+                <path d="M36 16c6 0 12 4 12 10s-6 10-12 10-12-4-12-10 6-10 12-10z" fill="#6ea8ff11" stroke="#2f45ff" stroke-width="2"/>
+                <rect x="22" y="52" width="30" height="6" rx="2" fill="#2f45ff"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <h3 id="p2" class="title">Ebook Futuro Tecnológico</h3>
+            <div class="meta">Tendências e estratégias digitais</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="price">Preço: 5.000 KZ</div>
+            <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
+          </div>
+          <div class="btns">
+            <button class="pay yellow" onclick="openWhatsapp('Ebook Futuro Tecnológico')">Pedir via WhatsApp</button>
+            <button class="pay blue" onclick="addToCart('Ebook Futuro Tecnológico')">Adicionar ao carrinho</button>
+            <button class="pay green" onclick="buyNow('Ebook Futuro Tecnológico')">Comprar</button>
+          </div>
+        </article>
 
-<!-- WhatsApp -->
-<a href="https://wa.me/934917014" target="_blank" class="whatsapp">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
+        <article class="card" aria-labelledby="p3">
+          <div class="cover" aria-hidden="true">
+            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6" width="88" height="88" rx="8" fill="#0b4f0810"/>
+              <g transform="translate(12,12)">
+                <rect x="8" y="12" width="52" height="36" rx="4" fill="#0b8f5f11" stroke="#10b981" stroke-width="2"/>
+                <path d="M12 62h48" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <h3 id="p3" class="title">Ebook Estratégias Digitais</h3>
+            <div class="meta">Ferramentas e playbooks de performance</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="price">Preço: 5.000 KZ</div>
+            <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
+          </div>
+          <div class="btns">
+            <button class="pay yellow" onclick="openWhatsapp('Ebook Estratégias Digitais')">Pedir via WhatsApp</button>
+            <button class="pay blue" onclick="addToCart('Ebook Estratégias Digitais')">Adicionar ao carrinho</button>
+            <button class="pay green" onclick="buyNow('Ebook Estratégias Digitais')">Comprar</button>
+          </div>
+        </article>
 
-<footer>
-<p>© 2025 Rendas Extras com IA - Todos os direitos reservados</p>
-</footer>
+        <article class="card" aria-labelledby="p4">
+          <div class="cover" aria-hidden="true">
+            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6" width="88" height="88" rx="8" fill="#ffefc911"/>
+              <g transform="translate(12,12)">
+                <rect x="6" y="14" width="48" height="36" rx="6" fill="#ffd77a"/>
+                <path d="M18 60h28" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <h3 id="p4" class="title">Ebook Monetização Online</h3>
+            <div class="meta">Como transformar audiência em receita</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="price">Preço: 5.000 KZ</div>
+            <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
+          </div>
+          <div class="btns">
+            <button class="pay yellow" onclick="openWhatsapp('Ebook Monetização Online')">Pedir via WhatsApp</button>
+            <button class="pay blue" onclick="addToCart('Ebook Monetização Online')">Adicionar ao carrinho</button>
+            <button class="pay green" onclick="buyNow('Ebook Monetização Online')">Comprar</button>
+          </div>
+        </article>
 
-<script>
-function openPagamento(produto){
-    document.getElementById('pagamentoModal').style.display='flex';
-    document.getElementById('produtoTitulo').innerText='Pagamento - '+produto;
-}
-document.getElementById('closeModal').onclick=function(){
-    document.getElementById('pagamentoModal').style.display='none';
-}
-window.onclick=function(event){
-    if(event.target==document.getElementById('pagamentoModal')){
-        document.getElementById('pagamentoModal').style.display='none';
+        <article class="card" aria-labelledby="p5">
+          <div class="cover" aria-hidden="true">
+            <svg width="80%" height="80%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6" width="88" height="88" rx="8" fill="#ffdede11"/>
+              <g transform="translate(12,12)">
+                <path d="M40 18v20" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round"/>
+                <path d="M22 48h36" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <h3 id="p5" class="title">Ebook Empreendedorismo</h3>
+            <div class="meta">Princípios clássicos aplicados ao amanhã</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="price">Preço: 5.000 KZ</div>
+            <div style="font-size:13px; color:var(--muted)">Formato: PDF</div>
+          </div>
+          <div class="btns">
+            <button class="pay yellow" onclick="openWhatsapp('Ebook Empreendedorismo')">Pedir via WhatsApp</button>
+            <button class="pay blue" onclick="addToCart('Ebook Empreendedorismo')">Adicionar ao carrinho</button>
+            <button class="pay green" onclick="buyNow('Ebook Empreendedorismo')">Comprar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <aside class="card contact" id="contato" aria-labelledby="contactTitle">
+      <h3 id="contactTitle">📬 Fale Connosco</h3>
+
+      <!-- Whatsapp quick link -->
+      <a class="whatsapp" href="https://wa.me/934917014?text=Ol%C3%A1%20CEO%20Higino%20Store%2C%20quero%20informacoes" target="_blank" rel="noopener noreferrer">
+        <!-- Icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" style="flex:0 0 18px" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path d="M20.52 3.48A11.94 11.94 0 1 0 12 24v-2.4a9.6 9.6 0 1 1 9.6-9.6c0 1.7-.44 3.3-1.2 4.7l1.2 3.9-3.9-1.2a11.94 11.94 0 0 0 4.8-16.1z" fill="#fff"/>
+        </svg>
+        WhatsApp: +934 917 014
+      </a>
+
+      <!-- Contact form (Formspree) -->
+      <form action="https://formspree.io/f/xzzjrwnq" method="POST" novalidate>
+        <!-- You can change the hidden subject or add fields as you like -->
+        <input type="hidden" name="_subject" value="Nova mensagem da loja CEO Higino">
+        <label style="font-size:13px; color:var(--muted)">Nome</label>
+        <input name="name" type="text" placeholder="Seu nome" required>
+        <label style="font-size:13px; color:var(--muted)">Email</label>
+        <input name="email" type="email" placeholder="seu@exemplo.com" required>
+        <label style="font-size:13px; color:var(--muted)">Mensagem</label>
+        <textarea name="message" placeholder="Escreva sua mensagem..." required></textarea>
+        <button class="submit" type="submit">Enviar Mensagem</button>
+      </form>
+
+      <div style="font-size:13px; color:var(--muted); margin-top:8px">Resposta automática por Formspree.</div>
+    </aside>
+  </main>
+
+  <footer>
+    © <strong>CEO Higino Store</strong> — Todos os direitos reservados · Design inspirado no clássico e no futuro.
+  </footer>
+
+  <script>
+    // Small UX helpers
+    function openWhatsapp(product){
+      const text = encodeURIComponent('Olá! Quero informações sobre: ' + product);
+      // Uses the provided number exactly
+      window.open('https://wa.me/934917014?text=' + text, '_blank');
     }
-}
-</script>
+    function addToCart(product){
+      // placeholder small toast
+      showToast(product + ' adicionado ao carrinho (demo).');
+    }
+    function buyNow(product){
+      // quick flow: open whatsapp to request purchase
+      const text = encodeURIComponent('Quero comprar: ' + product + ' — preço 5.000 KZ');
+      window.open('https://wa.me/934917014?text=' + text, '_blank');
+    }
 
+    // small toast utility
+    function showToast(msg){
+      const t = document.createElement('div');
+      t.textContent = msg;
+      Object.assign(t.style, {
+        position:'fixed', bottom:'24px', left:'50%', transform:'translateX(-50%)',
+        background:'#0f172a', color:'white', padding:'10px 16px', borderRadius:'10px',
+        boxShadow:'0 8px 20px rgba(15,23,42,0.2)', zIndex:9999, opacity:0
+      });
+      document.body.appendChild(t);
+      requestAnimationFrame(()=> t.style.opacity = 1);
+      setTimeout(()=> { t.style.opacity = 0; setTimeout(()=> t.remove(),400) }, 2400);
+    }
+
+    // Enhance form UX: handle submission feedback
+    (function(){
+      const form = document.querySelector('form[action="https://formspree.io/f/xzzjrwnq"]');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        // allow native submission to Formspree; show toast
+        showToast('A enviar mensagem…');
+      });
+    })();
+  </script>
 </body>
-    </html>
+</html>
